@@ -1,0 +1,213 @@
+
+
+    .container{
+      margin:auto;
+      background:#fff;
+      padding:20px;
+      border-radius:10px;
+    }
+
+    .video-js{
+      width:100%;
+      height:500px;
+      border-radius:10px;
+      margin: 30px auto;
+    }
+
+    @media(max-width:768px){
+      .video-js{
+        height:250px;
+      }
+    }
+
+    .suggestions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .card{
+      width:90%;
+      border:1px solid #ddd;
+      border-radius:8px;
+      overflow:hidden;
+      margin: auto;
+      display: block;
+    }
+    .card a{
+      text-decoration: none;
+      
+    }
+
+    .card img{
+      width:100%;
+    }
+
+    .card h4{
+      padding:8px;
+      font-size:14px;
+    }
+    
+    
+    h1{
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    
+    .firstImage{
+      width: 100%;
+      margin: 20px auto;
+      display: block;
+    }
+    /* বাটন স্টাইল */
+    .downloadButtonDiv{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto;
+      flex-direction: column;
+    }
+    
+    .downloadLink {
+        display: inline-block;
+        padding: 12px 30px;
+        background: #30d5c8;       /* সবুজ ব্যাকগ্রাউন্ড */
+        color: #fff;               /* সাদা লেখা */
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+    
+    /* হোভার এফেক্ট */
+    .downloadLink:hover {
+        background: #7f675b;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    
+    
+    
+    /* description */
+    
+    .viral-video-wrapper {
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+  color: #333;
+}
+
+.viral-video-wrapper h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.viral-video-wrapper h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.viral-video-wrapper h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.viral-video-wrapper p {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.viral-video-wrapper ul {
+  margin: 10px 0 15px 20px;
+  padding-left: 0;
+}
+
+.viral-video-wrapper ul li {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.viral-video-wrapper ul li::before {
+  content: "✔ ";
+  color: #007BFF;
+}
+
+.shareButton {
+  border: 0;
+  background: #007BFF;
+  margin: 10px;
+}
+.shareButton:hover{
+  background: #30d5c8;
+}
+.downloadPng{
+  width: 90%;
+  display: block;
+  margin: 30px auto;
+  box-shadow: 0 0 10px black;
+  border-radius: 6px;
+}
+
+.shareDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  flex-direction: column;
+  border: 3px solid #30d5c8;
+  outline: 2px solid #007BFF;
+  outline-offset: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+  width: 97%;
+}
+.sharePost{
+  margin-top: 10px;
+}
+.sharePost p{
+  margin: 10px;
+}
+.videoNiche{
+  margin: 20px auto;
+  display: block;
+}
+.videoNiche p{
+  font-size: 23px;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.videoNiche mark{
+  text-align: justify;
+  
+}
+.playForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+.playForm form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.playDiv{
+  margin: 30px 0;
+}
+.fullVideoClick {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

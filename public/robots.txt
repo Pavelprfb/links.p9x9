@@ -1,0 +1,24 @@
+# robots.txt for Links.P9X9
+# Block sensitive folders (adjust if needed)
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /private/
+Disallow: /node_modules/
+Disallow: /tmp/
+Disallow: /config/
+Disallow: /create/
+Disallow: /edit/
+Disallow: /delete/
+Disallow: /api/data/all/
+Disallow: /api/data/
+Disallow: /admin/dashboard/
+Disallow: /admin/login/
+Disallow: /admin/signup/
+
+# Allow all other pages
+Allow: /
+
+# Sitemap location
+Sitemap: https://links.p9x9.com/sitemap.xml

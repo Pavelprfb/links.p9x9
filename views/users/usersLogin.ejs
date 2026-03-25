@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login - Links.P9X9</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+/* wrapper */
+
+.main-wrapper{
+display:flex;
+justify-content:center;
+min-height:100vh;
+background:#ffffff;
+}
+
+.container{
+width:100%;
+max-width:380px;
+padding:20px;
+}
+
+.logoForm{
+text-align:center;
+font-size:28px;
+font-weight:700;
+color:#007bff;
+margin-bottom:25px;
+}
+
+.card{
+background:#fff;
+padding:30px;
+border-radius:12px;
+}
+
+.card h2{
+text-align:center;
+margin-bottom:20px;
+color:#333;
+}
+
+/* inputs */
+
+.input-group{
+position:relative;
+margin-bottom:15px;
+}
+
+.input-group .fa-phone, .input-group .fa-lock{
+position:absolute;
+top:50%;
+left:12px;
+transform:translateY(-50%);
+color:#888;
+}
+
+.input-group input{
+width:100%;
+padding:12px 40px 12px 38px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:15px;
+outline:none;
+}
+
+.input-group input:focus{
+border-color:#007bff;
+}
+
+/* password toggle */
+
+.togglePass{
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+color:#777;
+display:none;
+}
+
+/* validation */
+
+.validation{
+font-size:13px;
+margin-bottom:12px;
+color:#999;
+}
+
+.validation.success{
+color:green;
+}
+
+.validation.error{
+color:red;
+}
+
+/* button */
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#007bff;
+color:white;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#0056d2;
+}
+
+/* footer */
+
+.footer-text{
+text-align:center;
+margin-top:15px;
+font-size:14px;
+}
+
+.footer-text a{
+color:#007bff;
+text-decoration:none;
+font-weight:600;
+}
+
+</style>
+</head>
+
+<body>
+
+  <%- include("./../nav") %>
+<div class="main-wrapper">
+
+<div class="container">
+
+<div class="logoForm">
+  
+</div>
+
+<div class="card">
+
+<h2><i class="fa-solid fa-right-to-bracket"></i> Login</h2>
+
+<form action="/users/login" method="POST">
+
+<!-- Phone -->
+
+<div class="input-group">
+<i class="fa-solid fa-phone"></i>
+<input type="text" id="number" name="number" placeholder="Enter phone number" required>
+</div>
+
+<div id="numberMsg" class="validation"></div>
+
+<!-- Password -->
+
+<div class="input-group">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="password" name="password" placeholder="Enter password" required>
+<i class="fa-solid fa-eye togglePass" id="togglePass"></i>
+</div>
+
+<button type="submit">
+<i class="fa-solid fa-right-to-bracket"></i> Login
+</button>
+
+</form>
+
+<div class="footer-text">
+Don't have an account? <a href="/users/signup">Signup</a>
+</div>
+
+</div>
+</div>
+</div>
+
+  <%- include("./../footer") %>
+<script>
+
+/* phone validation */
+
+const numberInput=document.getElementById("number");
+const numberMsg=document.getElementById("numberMsg");
+
+numberInput.addEventListener("input",function(){
+
+const value=this.value;
+
+if(!/^[0-9]*$/.test(value)){
+
+numberMsg.textContent="Only numbers allowed";
+numberMsg.className="validation error";
+this.value=value.replace(/[^0-9]/g,'');
+
+}else{
+numberMsg.textContent="Valid number format";
+numberMsg.className="validation success";
+}
+
+});
+
+/* password toggle */
+
+const password=document.getElementById("password");
+const togglePass=document.getElementById("togglePass");
+
+password.addEventListener("input",function(){
+togglePass.style.display = this.value.length ? "block" : "none";
+});
+
+togglePass.addEventListener("click",function(){
+if(password.type==="password"){
+password.type="text";
+this.classList.replace("fa-eye","fa-eye-slash");
+}else{
+password.type="password";
+this.classList.replace("fa-eye-slash","fa-eye");
+}
+});
+
+</script>
+
+</body>
+</html>

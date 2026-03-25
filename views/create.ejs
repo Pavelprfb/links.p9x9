@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Post | Links.P9X9</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:0;
+padding:0;
+display:flex;
+justify-content:center;
+min-height:100vh;
+}
+
+.container{
+width:95%;
+max-width:600px;
+}
+
+.card{
+padding:25px;
+border-radius:10px;
+}
+
+h2{
+text-align:center;
+color:#333;
+}
+
+.input-group{
+position:relative;
+margin-bottom:15px;
+}
+
+.input-group i{
+position:absolute;
+top:50%;
+left:12px;
+transform:translateY(-50%);
+color:#888;
+}
+
+.input-group input,
+.input-group textarea{
+width:80%;
+padding:10px 10px 10px 40px;
+border:1px solid #ddd;
+border-radius:6px;
+font-size:14px;
+outline:none;
+transition:0.3s;
+margin: 0 auto;
+display: block;
+}
+
+.input-group textarea{
+resize:none;
+height:90px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+border-color:#007bff;
+box-shadow:0 0 3px rgba(0,123,255,0.4);
+}
+
+button{
+width:100%;
+padding:12px;
+background:#007bff;
+border:none;
+color:white;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+/* Responsive */
+
+@media (max-width:600px){
+
+.card{
+padding:20px;
+}
+
+h2{
+font-size:20px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h2><i class="fa-solid fa-upload"></i> Create Post</h2>
+
+<form action="/create" method="POST">
+
+<div class="input-group">
+<i class="fa-solid fa-link"></i>
+<input name="routeName" placeholder="Route Name" required>
+</div>
+
+<div class="input-group">
+<i class="fa-solid fa-heading"></i>
+<input name="title" placeholder="Title">
+</div>
+
+<div class="input-group">
+<i class="fa-solid fa-align-left"></i>
+<textarea name="description" placeholder="Description"></textarea>
+</div>
+
+<div class="input-group">
+<i class="fa-solid fa-file-lines"></i>
+<input name="shortDescription" placeholder="Short Description">
+</div>
+
+<div class="input-group">
+<i class="fa-solid fa-image"></i>
+<input name="imageLink" placeholder="Image Link">
+</div>
+
+<div class="input-group">
+<i class="fa-solid fa-video"></i>
+<input name="videoLink" placeholder="Video Link">
+</div>
+
+<div class="input-group">
+<i class="fa-solid fa-eye"></i>
+<input name="totalView" type="number" placeholder="Total View">
+</div>
+
+<div class="input-group">
+<i class="fa-solid fa-clock"></i>
+<input name="duration" placeholder="Duration">
+</div>
+
+<div class="input-group">
+<i class="fa-solid fa-tags"></i>
+<input name="category" placeholder="category1,category2">
+</div>
+
+<button type="submit">
+<i class="fa-solid fa-paper-plane"></i> Publish Post
+</button>
+
+</form>
+
+</div>
+</div>
+
+</body>
+</html>

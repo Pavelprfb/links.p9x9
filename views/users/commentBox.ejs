@@ -1,0 +1,111 @@
+
+<link href="./../css/comment.css" rel="stylesheet" />
+
+<div class="allComment" id="allComment">
+  <!-- কমেন্ট এখানে JS দিয়ে রেন্ডার হবে -->
+</div>
+
+<div class="pagination-buttons">
+  <button class="npBTN" id="prevBtn">Previous</button>
+  <button class="npBTN" id="nextBtn">Next</button>
+</div>
+
+<script>
+  // সব কমেন্ট ডাটা JS অ্যারেতে রাখা
+  const allComments = [
+    <% allComment.forEach((data, index) => { %>
+      {
+        profilePic: "<%= data.profilePic %>",
+        name: "<%= data.name %>",
+        message: `<%= data.message.replace(/`/g, '\\`') %>`
+      }<%= index !== allComment.length - 1 ? ',' : '' %>
+    <% }) %>
+  ];
+
+  const limit = 5; // প্রতি পেজে 10 কমেন্ট
+  let currentIndex = 0; // শুরু
+
+  const commentContainer = document.getElementById('allComment');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+
+  function renderComments() {
+    commentContainer.innerHTML = '';
+    const commentsToShow = allComments.slice(currentIndex, currentIndex + limit);
+    commentsToShow.forEach(data => {
+      const div = document.createElement('div');
+      div.className = 'comment';
+      div.innerHTML = `
+        <div class="user">
+          <img src="${data.profilePic}" alt="${data.name} profile" class="comment-profile-pic">
+          <span class="comment-name">${data.name}</span>
+        </div>
+        <p class="comment-message">${data.message}</p>
+      `;
+      commentContainer.appendChild(div);
+    });
+
+    // Next / Previous বাটন দেখানো / লুকানো
+    prevBtn.style.display = currentIndex > 0 ? 'inline-block' : 'none';
+    nextBtn.style.display = currentIndex + limit < allComments.length ? 'inline-block' : 'none';
+  }
+
+  // Next বাটন ক্লিক
+  nextBtn.addEventListener('click', () => {
+    currentIndex += limit;
+    renderComments();
+  });
+
+  // Previous বাটন ক্লিক
+  prevBtn.addEventListener('click', () => {
+    currentIndex -= limit;
+    renderComments();
+  });
+
+  // প্রথমে রেন্ডার
+  renderComments();
+</script>
+
+
+<form action="/add" method="POST" class="comment-form">
+  <h2 class="comment-section-title">Add a Comment</h2>
+  
+  <!-- User Profile Section -->
+  <% if (user) { %>
+    <div class="comment-user-profile profile-wrapper">
+      <img src="/images/users/<%= user.profilePic %>" alt="<%= user.name %> profile" class="profile-image">
+      <span class="profile-name"><%= user.name %></span>
+    </div>
+    
+    <!-- Hidden Fields -->
+    <input type="hidden" name="postRouteName" value="<%= post.routeName %>" class="input-postRouteName">
+    <input type="hidden" name="number" value="<%= user.number %>" class="input-number">
+    <input type="hidden" name="profilePic" value="/images/users/<%= user.profilePic %>" class="input-profilePic">
+    
+    <!-- Name Input (readonly) -->
+    <div class="form-group name-group">
+      <label for="name" class="label-name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" value="<%= user.name %>" required readonly class="input-name">
+    </div>
+  <% } else { %>
+    <!-- যদি ইউজার না থাকে, ফাঁকা ইনপুট দেখাবে -->
+    <div class="form-group name-group">
+      <label for="name" class="label-name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required class="input-name">
+    </div>
+    <input type="hidden" name="postRouteName" value="<%= post.routeName %>" class="input-postRouteName">
+    <input type="hidden" name="number" value="" class="input-number">
+    <input type="hidden" name="profilePic" value="" class="input-profilePic">
+  <% } %>
+
+  <!-- Message Textarea -->
+  <div class="form-group message-group">
+    <label for="message" class="label-message">Your Comment</label>
+    <textarea id="message" name="message" placeholder="Write your comment..." required class="textarea-message"></textarea>
+  </div>
+  
+  <!-- Submit Button -->
+  <button type="submit" class="btn-submit-comment">Post Comment</button>
+</form>
+<style>
+</style>

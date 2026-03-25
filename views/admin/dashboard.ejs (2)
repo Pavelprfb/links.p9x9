@@ -1,0 +1,36 @@
+<h2>Total Users: <%= dataUsersModel.length %></h2>
+
+<ul>
+<% dataUsersModel.forEach(function(user){ %>
+  <li>/images/users/<%= user.profilePic %></li>
+  <li><%= user.name %></li>
+  <li><%= user.number %></li>
+  <li><%= user.createdDate %></li>
+<% }) %>
+</ul>
+
+<h2>Total Posts: <%= dataPost.length %></h2>
+
+<ul>
+<% dataPost.forEach(function(post){ %>
+  <li><img src="<%= post.imageLink %>"/></li>
+  <li><a href="/videos/<%= post.routeName %>">/<%= post.routeName %></a></li>
+  <li><%= post.title %></li>
+  <li><%= post.totalView %></li>
+  <li><%= post.date %></li>
+<% }) %>
+</ul>
+
+
+<h2>Total Comments: <%= dataComment.length %></h2>
+
+<ul>
+<% dataComment.forEach(function(comment){ %>
+  <li><img src="<%= comment.profilePic %>"/></li>
+  <li><a href="/videos/<%= comment.postRouteName %>">/<%= comment.postRouteName %></a></li>
+  <li><%= comment.message %></li>
+  <li><%= comment.name %></li>
+  <li><%= comment.number %></li>
+  <li><%= comment.createdAt %></li>
+<% }) %>
+</ul>

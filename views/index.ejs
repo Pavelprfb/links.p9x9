@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- HTML Meta Tags -->
+  <title>Links.P9X9</title>
+  <meta name="theme-color" content="#007bff">
+  <meta name="googlebot" content="index, follow, max-image-preview:large">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="<%= websiteFavicon %>" />
+  <meta name="author" content="<%= websiteName %>">
+  <link rel="canonical" href="<%= websiteUrl %>" />
+  
+  
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="<%= websiteUrl %>">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Links.P9X9">
+  <meta property="og:image" content="<%= websiteFavicon %>">
+  
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="links.p9x9.com">
+  <meta property="twitter:url" content="<%= websiteUrl %>">
+  <meta name="twitter:title" content="Links.P9X9">
+  <meta name="twitter:image" content="<%= websiteFavicon %>">
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "WebSite",
+      "name": "<%= websiteName %>",
+      "url": "https://links.p9x9.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://links.p9x9.com/?search{search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+  
+<style>
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background-color: #f9f9f9;
+    color: #222;
+  }
+
+  main.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  /* Page Title */
+  .page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #222;
+  }
+
+  /* Search Form */
+  .search-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    padding: 10px 15px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+
+  .search-input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  .search-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+
+  /* Video Grid */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .video-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+
+  .video-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .video-content {
+    padding: 15px;
+  }
+
+  .video-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #222;
+  }
+
+  .video-desc {
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+  /* Pagination */
+  .pagination {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .next-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .next-btn:hover {
+    background-color: #0056b3;
+  }
+
+  /* Responsive adjustments */
+  @media(max-width: 600px) {
+    .search-input {
+      width: 100%;
+    }
+  }
+  .video-content img{
+    width: 100%;
+    display: block;
+    margin: 10px auto;
+  }
+  .video-content h2{
+    font-size: 1.25rem;
+    color: blue;
+  }
+</style>
+
+
+</head>
+<body>
+
+  <!-- Navigation -->
+  <%- include("./nav") %>
+  <%- include("./ad/ad") %>
+
+  <main class="container">
+    <h1 class="page-title">Links.P9X9</h1>
+
+    <!-- Search Form -->
+    <form method="GET" action="/" class="search-form">
+      <input type="text" name="search" value="<%= search %>" placeholder="Search title..." class="search-input">
+      <button type="submit" class="search-button">Search</button>
+    </form>
+
+    <!-- Video Grid -->
+    <div class="video-grid">
+      <% posts.forEach(post=>{ %>
+        <article class="video-card">
+          <a href="/videos/<%= post.routeName %>">
+            <div class="video-content">
+              <img src="<%= post.imageLink %>" alt="<%= post.title %>" loading="lazy"/>
+              <h2 class="video-title"><%= post.title %></h2>
+            </div>
+          </a>
+        </article>
+      <% }) %>
+    </div>
+
+    <!-- Pagination -->
+    <% if(hasNext){ %>
+      <div class="pagination">
+        <a href="/?page=<%= page+1 %>&search=<%= search %>" class="next-btn">Next</a>
+      </div>
+    <% } %>
+  </main>
+
+  <!-- Footer -->
+  <%- include("./footer") %>
+  
+</body>
+</html>

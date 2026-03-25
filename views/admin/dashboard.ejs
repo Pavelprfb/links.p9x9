@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Links.P9X9 Admin • Dashboard</title>
+  <!-- Font Awesome 6 (Free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f0f5fa 0%, #e9eff5 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    /* main container */
+    .dashboard {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* header area with glass effect */
+    .dashboard-header {
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .dashboard-header h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #1e2b4f, #2a3f6e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-stats {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 0.6rem 1.5rem;
+      border-radius: 60px;
+      box-shadow: 0 6px 18px rgba(0,40,80,0.08);
+      font-weight: 500;
+      color: #1a2b3c;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-pill i {
+      color: #2d4990;
+      font-size: 1.2rem;
+    }
+
+    /* card sections */
+    .section-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 36px;
+      padding: 1.8rem 1.8rem 2.2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 35, 70, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title h2 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #11212e;
+      letter-spacing: -0.3px;
+    }
+
+    .title-badge {
+      background: #1e3a5f;
+      color: white;
+      padding: 0.25rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(20,60,120,0.3);
+    }
+
+    /* modern table / card hybrid */
+    .data-grid {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      margin: 0;
+    }
+
+    .data-grid thead tr {
+      background: transparent;
+    }
+
+    .data-grid th {
+      background: rgba(0, 55, 100, 0.1);
+      backdrop-filter: blur(5px);
+      color: #0c2b44;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 1rem 0.8rem;
+      border: none;
+      white-space: nowrap;
+    }
+
+    .data-grid th:first-child {
+      border-top-left-radius: 18px;
+      border-bottom-left-radius: 18px;
+      padding-left: 1.5rem;
+    }
+
+    .data-grid th:last-child {
+      border-top-right-radius: 18px;
+      border-bottom-right-radius: 18px;
+      padding-right: 1.5rem;
+    }
+
+    .data-grid tbody tr {
+      background: white;
+      border-radius: 24px !important;
+      box-shadow: 0 6px 14px rgba(0, 20, 40, 0.06);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .data-grid tbody tr:hover {
+      transform: scale(1.005);
+      box-shadow: 0 14px 26px rgba(0, 45, 80, 0.15);
+      background: #ffffff;
+    }
+
+    .data-grid td {
+      padding: 1rem 0.8rem;
+      border: none;
+      background: inherit;
+      font-size: 0.95rem;
+      color: #1e3347;
+      vertical-align: middle;
+    }
+
+    .data-grid td:first-child {
+      border-top-left-radius: 24px;
+      border-bottom-left-radius: 24px;
+      padding-left: 1.5rem;
+    }
+
+    .data-grid td:last-child {
+      border-top-right-radius: 24px;
+      border-bottom-right-radius: 24px;
+      padding-right: 1.5rem;
+    }
+
+    /* profile images */
+    .profile-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: #e0eaf2;
+    }
+
+    .post-thumb {
+      width: 60px;
+      height: 40px;
+      border-radius: 16px;
+      object-fit: cover;
+      background: #bdd3e6;
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 6px 12px rgba(0, 30, 60, 0.1);
+    }
+
+    /* link styling */
+    .route-link {
+      background: #eef4fc;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-weight: 500;
+      color: #1f4977;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .route-link i {
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
+
+    .route-link:hover {
+      background: #d4e3ff;
+      color: #0b2d4f;
+    }
+
+    /* badge for empty / secondary */
+    .empty-badge {
+      background: #e2eaf1;
+      color: #4a617c;
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    /* pagination */
+    .pagination-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      margin-top: 25px;
+    }
+
+    .page-btn {
+      background: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #1b3b5c;
+      box-shadow: 0 4px 12px rgba(0, 30, 60, 0.05);
+      cursor: pointer;
+      transition: 0.1s;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+    }
+
+    .page-btn.active {
+      background: #1d3f70;
+      color: white;
+      box-shadow: 0 8px 16px #1d3f7030;
+    }
+
+    .page-btn:hover:not(.active) {
+      background: #e3edf5;
+    }
+
+    /* mobile first — responsive table turn into cards */
+    @media (max-width: 760px) {
+      body { padding: 1rem 0.8rem; }
+      .section-card { padding: 1.2rem 0.8rem 1.8rem; border-radius: 28px; }
+
+      .data-grid thead { display: none; } /* hide headers */
+
+      .data-grid tbody tr {
+        display: block;
+        margin-bottom: 1.5rem;
+        border-radius: 28px;
+        padding: 0.8rem 0;
+      }
+
+      .data-grid td {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0.7rem 1.2rem;
+        border-bottom: 1px solid rgba(0,0,0,0.03);
+      }
+
+      .data-grid td:last-child { border-bottom: none; }
+
+      .data-grid td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        min-width: 90px;
+        color: #264d7c;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+
+      /* images inline adjust */
+      .profile-thumb, .post-thumb {
+        margin-left: auto;
+      }
+    }
+
+    /* small touches */
+    i { color: #3d6492; }
+    .fa-eye { color: #1f5f5f; }
+  </style>
+</head>
+<body>
+<div class="dashboard">
+
+  <!-- header -->
+  <div class="dashboard-header">
+    <h1>
+      <i class="fas fa-cube" style="background: none; -webkit-text-fill-color: #1e3a5f;"></i>
+      Links.P9X9<span style="font-weight:300;">Admin</span>
+    </h1>
+    <div class="header-stats">
+      <span class="stat-pill"><i class="fas fa-users"></i> <span id="totalUsers">0</span> users</span>
+      <span class="stat-pill"><i class="fas fa-images"></i> <span id="totalPosts">0</span> posts</span>
+      <span class="stat-pill"><i class="fas fa-comment"></i> <span id="totalComments">0</span> comments</span>
+    </div>
+  </div>
+
+  <!-- USERS SECTION -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">
+        <h2><i class="fas fa-user-circle" style="font-size:1.8rem;"></i> Users</h2>
+        <span class="title-badge" id="userBadge">0</span>
+      </div>
+    </div>
+    <table class="data-grid" id="usersTable">
+      <thead>
+        <tr><th>Profile</th><th>Name</th><th>Number</th><th>Date</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="usersPagination" class="pagination-wrap"></div>
+  </div>
+
+  <!-- POSTS SECTION -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">
+        <h2><i class="fas fa-video"></i> Posts</h2>
+        <span class="title-badge" id="postBadge">0</span>
+      </div>
+    </div>
+    <table class="data-grid" id="postsTable">
+      <thead>
+        <tr><th>Image</th><th>Route</th><th>Title</th><th>Views</th><th>Date</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="postsPagination" class="pagination-wrap"></div>
+  </div>
+
+  <!-- COMMENTS SECTION -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">
+        <h2><i class="fas fa-comments"></i> Comments</h2>
+        <span class="title-badge" id="commentBadge">0</span>
+      </div>
+    </div>
+    <table class="data-grid" id="commentsTable">
+      <thead>
+        <tr><th>Profile</th><th>Post</th><th>Message</th><th>Name</th><th>Number</th><th>Date</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="commentsPagination" class="pagination-wrap"></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // --- sample / provided data (replace with your actual server variables)
+    const usersData = <%- JSON.stringify(dataUsersModel) %>;
+    const postsData = <%- JSON.stringify(dataPost) %>;
+    const commentsData = <%- JSON.stringify(dataComment) %>;
+    const limit = 10;
+
+    // update total & badges
+    document.getElementById('totalUsers').innerText = usersData.length;
+    document.getElementById('totalPosts').innerText = postsData.length;
+    document.getElementById('totalComments').innerText = commentsData.length;
+    document.getElementById('userBadge').innerText = usersData.length;
+    document.getElementById('postBadge').innerText = postsData.length;
+    document.getElementById('commentBadge').innerText = commentsData.length;
+
+    // helper: format date nicely
+    function formatDate(dateStr) {
+      if (!dateStr) return '—';
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+    }
+
+    // ---------- PAGINATION & RENDER (modern) ----------
+    function renderTable(data, tableId, paginationId, columns, imageKeys = [], linkConfig = {}, customImageFn = null) {
+      let currentPage = 1;
+      const totalPages = Math.ceil(data.length / limit) || 1;
+
+      function buildPage(page) {
+        const start = (page - 1) * limit;
+        const end = start + limit;
+        const pageData = data.slice(start, end);
+
+        const tbody = document.querySelector(`#${tableId} tbody`);
+        tbody.innerHTML = '';
+
+        pageData.forEach(item => {
+          const tr = document.createElement('tr');
+
+          columns.forEach(col => {
+            const td = document.createElement('td');
+            td.setAttribute('data-label', col === 'profilePic' ? 'Profile' :
+                                    col === 'imageLink' ? 'Image' :
+                                    col === 'postRouteName' ? 'Post link' :
+                                    col === 'message' ? 'Comment' :
+                                    col.charAt(0).toUpperCase() + col.slice(1).replace(/([A-Z])/g, ' $1'));
+
+            // ---- image handling ----
+            if (imageKeys.includes(col) && item[col]) {
+              if (col === 'profilePic' || col === 'imageLink') {
+                const img = document.createElement('img');
+                img.alt = 'avatar';
+                if (customImageFn && col === 'profilePic') {
+                  img.src = customImageFn(item);
+                } else if (col === 'profilePic') {
+                  img.src = `/images/users/${item[col]}`;   // default user folder
+                } else {
+                  img.src = item[col];   // post image link
+                }
+                img.classList.add(col === 'imageLink' ? 'post-thumb' : 'profile-thumb');
+                td.appendChild(img);
+              } else {
+                td.textContent = item[col] ?? '—';
+              }
+            }
+            // ---- special link column (route) ----
+            else if (linkConfig[col] && item[col]) {
+              const a = document.createElement('a');
+              a.href = linkConfig[col].prefix + item[col];
+              a.className = 'route-link';
+              a.innerHTML = (linkConfig[col].text ? linkConfig[col].text(item[col]) : item[col]) + ' <i class="fas fa-arrow-right"></i>';
+              td.appendChild(a);
+            }
+            // ---- normal text or fallback ----
+            else {
+              let value = item[col];
+              // format date fields
+              if (col === 'createdDate' || col === 'date' || col === 'createdAt') {
+                value = formatDate(value);
+              }
+              // views nice icon
+              if (col === 'totalView' && value) {
+                td.innerHTML = `<i class="fas fa-eye" style="margin-right: 6px;"></i> ${value}`;
+              } else {
+                td.textContent = value ?? '—';
+              }
+            }
+
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+
+        // ------ pagination controls ------
+        const paginationDiv = document.getElementById(paginationId);
+        paginationDiv.innerHTML = '';
+
+        // prev button
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevBtn.disabled = (page === 1);
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (currentPage > 1) {
+            currentPage--;
+            buildPage(currentPage);
+          }
+        });
+        paginationDiv.appendChild(prevBtn);
+
+        // page numbers
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement('button');
+          btn.className = `page-btn ${i === page ? 'active' : ''}`;
+          btn.textContent = i;
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentPage = i;
+            buildPage(currentPage);
+          });
+          paginationDiv.appendChild(btn);
+        }
+
+        // next button
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextBtn.disabled = (page === totalPages);
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (currentPage < totalPages) {
+            currentPage++;
+            buildPage(currentPage);
+          }
+        });
+        paginationDiv.appendChild(nextBtn);
+      }
+
+      buildPage(currentPage);
+    }
+
+    // --- USERS (profilePic as image) ---
+    renderTable(usersData, 'usersTable', 'usersPagination',
+      ['profilePic', 'name', 'number', 'createdDate'],
+      ['profilePic'],   // image keys
+      {},               // no link columns
+      (item) => `/images/users/${item.profilePic}`  // custom profile path (if needed)
+    );
+
+    // --- POSTS (imageLink as image, routeName as link) ---
+    renderTable(postsData, 'postsTable', 'postsPagination',
+      ['imageLink', 'routeName', 'title', 'totalView', 'date'],
+      ['imageLink'],
+      { routeName: { prefix: '/videos/', text: (r) => '/' + r } }
+    );
+
+    // --- COMMENTS (profilePic image, postRouteName as link) ---
+    renderTable(commentsData, 'commentsTable', 'commentsPagination',
+      ['profilePic', 'postRouteName', 'message', 'name', 'number', 'createdAt'],
+      ['profilePic'],
+      { postRouteName: { prefix: '/videos/', text: (r) => '/' + r } },
+      (item) => item.profilePic // as per original, using direct string; adjust if needed
+    );
+
+  })();
+</script>
+<!-- ensure fontawesome works with integrity (optional) -->
+</body>
+</html>

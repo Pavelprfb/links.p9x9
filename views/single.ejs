@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- Video.js CSS -->
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <link href="/css/single.css" rel="stylesheet" />
+
+  <!-- HTML Meta Tags -->
+  <title><%= post.title %> - <%= websiteName %></title>
+  <meta name="description" content="<%= post.shortDescription %>">
+  
+  <meta name="theme-color" content="#007bff">
+  <meta name="googlebot" content="index, follow, max-image-preview:large">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="<%= post.category %>" />
+  <link rel="icon" href="<%= websiteFavicon %>" />
+  <meta name="author" content="<%= websiteName %>">
+  <link rel="canonical" href="<%= websiteUrl %>/videos/<%= post.routeName %>" />
+  
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="<%= websiteUrl %>/videos/<%= post.routeName %>">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="<%= post.title %> - <%= websiteName %>">
+  <meta property="og:description" content="<%= post.shortDescription %>">
+  <meta property="og:image" content="<%= post.imageLink %>">
+  
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="links.p9x9.com">
+  <meta property="twitter:url" content="<%= websiteUrl %>/videos/<%= post.routeName %>">
+  <meta name="twitter:title" content="<%= post.title %> - <%= websiteName %>">
+  <meta name="twitter:description" content="<%= post.shortDescription %>">
+  <meta name="twitter:image" content="<%= post.imageLink %>">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "<%= websiteUrl %>/videos/<%= post.routeName %>"
+    },
+    "headline": "<%= post.title %>",
+    "description": "<%= post.shortDescription %>",
+    "image": "<%= post.imageLink %>",  
+    "author": {
+      "@type": "Organization",
+      "name": "<%= websiteName %>",
+      "url": "<%= websiteUrl %>"
+    },  
+    "publisher": {
+      "@type": "Organization",
+      "name": "<%= websiteName %>",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "<%= websiteFavicon %>"
+      }
+    },
+    "datePublished": "<%= post.date %>",
+    "dateModified": "<%= post.updateDate %>"
+  }
+  </script>
+
+</head>
+<body>
+<%- include("./nav") %>
+<%- include("./ad/ad") %>
+<div class="container">
+
+<h1><%= post.title %></h1>
+
+
+
+<a class="" href="<%= redirectUrl %>">
+  <img class="firstImage" src="<%= post.imageLink %>" alt="<%= post.title %>"/>
+</a>
+
+<div class="downloadButtonDiv">
+  <a class="downloadLink" href="<%= redirectUrl %>">Download</a>
+</div>
+
+<div class="downloadButtonDiv">
+    <a href="<%= telegramChannel %>" class="downloadLink shareButton">Join Telegram</a>
+</div>
+
+<div class="videoNiche">
+  <p>সম্পূর্ণ ভিডিওটা দেখতে নিচে যান</p>
+  <mark>ভিডিওতে ক্লিক করার পর অন্য জায়গায় নিয়ে গেলে ব্যাগ চলে আসবেন পরে আবার ক্লিক করবেন তাহলে ভিডিও চলবে তাও না চলে একটা VPN কানেক্ট করে নিবেন</mark>
+</div>
+
+<p>
+  Created Date: 
+  <%= new Date(post.date).toISOString().split('T')[0] %>
+</p>
+<div class="viral-video-wrapper">
+  <%- post.description %>
+</div>
+<!-- 🎥 Professional Video Player -->
+<!-- <video
+  id="my-video"
+  class="video-js vjs-big-play-centered"
+  controls
+  preload="preload"
+  poster="<%= post.imageLink %>"
+  data-setup="{}"
+>
+  <source src="<%= post.videoLink %>" type="video/mp4" />
+</video> -->
+
+<div class="">
+  <a class="" href="<%= redirectUrl %>">
+    <img class="downloadPng" src="/images/download.png" alt="Download image"/>
+  </a>
+</div>
+
+
+
+
+
+
+
+
+<div class="playDiv">
+  <a class="" href="<%= redirectUrl %>">
+    <img class="firstImage" src="<%= post.imageLink %>" alt="<%= post.title %>"/>
+  </a>
+  
+  <div class="playForm">
+    <form action="/play" method="post">
+    <input type="hidden" name="routeName" value="<%= post.routeName %>">
+    <div class="fullVideoClick">
+      <mark>সম্পূর্ণ ভিডিওটা দেখতে নিচে ক্লিক করেন।</mark>
+    </div>
+    <button class="downloadLink shareButton" type="submit">Play Full Video</button>
+  </form>
+  </div>
+</div>
+
+<div class="shareDiv">
+  <div class="sharePost">
+    <p>📢 এই ভিডিওটি আপনার বন্ধুর কাছে শেয়ার করুন 👇</p>
+    <p>🎥 বন্ধুদের দেখাতে আজই পাঠান!</p>
+    <p>✨ মজা বা ট্রেন্ডিং কনটেন্ট মিস হবে না 😊</p>
+  </div>
+    <button class="downloadLink shareButton" id="shareBtn">Share Now</button>
+</div>
+
+
+
+<hr>
+<h3>Suggested Videos</h3>
+
+<div class="suggestions">
+  <% suggestions.forEach(item => { %>
+    <div class="card">
+      <a href="/videos/<%= item.routeName %>">
+        <img src="<%= item.imageLink %>" alt="<%= item.title %>">
+        <h4><%= item.title %></h4>
+      </a>
+    </div>
+  <% }) %>
+</div>
+
+<% if(hasNext){ %>
+  <a href="?page=<%= page + 1 %>" class="next-button">Next 20 Videos</a>
+<% } %>
+
+</div>
+
+  <%- include("./users/commentBox") %>
+
+
+
+<%- include("./footer") %>
+<!-- Video.js JS -->
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
+<script>
+  var player = videojs('my-video', {
+    fluid: true,
+    playbackRates: [0.5, 1, 1.5, 2]
+  });
+
+  // Auto buffer ready
+  player.ready(function(){
+    player.preload('auto');
+  });
+</script>
+  
+  <script>
+  const shareBtn = document.getElementById('shareBtn');
+
+  shareBtn.addEventListener('click', async () => {
+    const shareData = {
+      title: '<%= post.title %>',
+      text: '<%= post.title %>',
+      url: '<%= websiteUrl %>/videos/<%= post.routeName %>'
+    };
+
+    try {
+      if (navigator.share) {
+        // Use Web Share API on mobile browsers
+        await navigator.share(shareData);
+        alert('Shared successfully!');
+      } else {
+        // Fallback for desktop or browsers without Web Share API
+        const shareText = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
+        prompt('Copy the link below to share:', shareText);
+      }
+    } catch (err) {
+      console.error('Failed to share:', err);
+    }
+  });
+  
+</script>
+<!-- Update View -->
+<script>
+setTimeout(function(){
+
+  const routeName = "<%= post.routeName %>";
+
+  // cookie read
+  function getCookie(name){
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if(parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+  // cookie data
+  let viewsCookie = getCookie("views");
+
+  let views = [];
+
+  if(viewsCookie){
+    try{
+      views = JSON.parse(viewsCookie);
+    }catch(e){
+      views = [];
+    }
+  }
+
+  // check current routeName
+  if(!views.includes(routeName)){
+
+    // add routeName
+    views.push(routeName);
+
+    // update cookie
+    document.cookie =
+      "views=" + JSON.stringify(views) +
+      "; path=/; max-age=" + (60*60*24*365);
+
+    // send to server
+    fetch("/<%= post._id %>",{
+      method:"POST"
+    });
+
+  }
+
+},1000);
+</script>
+</body>
+</html>

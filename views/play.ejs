@@ -1,0 +1,109 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title><%= post.title %> - Video Play</title>
+
+  <!-- Video.js CSS -->
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 10px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #007bff;
+    }
+
+    /* Video Player */
+    .video-js {
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      margin-bottom: 10px;
+    }
+
+    /* Fluid responsive video */
+    .video-js.vjs-fluid {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    .note {
+      display: block;
+      background-color: #fff8c6;
+      border-left: 5px solid #ffca28;
+      padding: 15px 20px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      border-radius: 6px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .note {
+        font-size: 0.9rem;
+        padding: 12px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<%- include("./nav") %>
+<%- include("./ad/ad") %>
+  <div class="container">
+    <h1><%= post.title %></h1>
+    
+    
+    <div class="note">
+      ভিডিওতে ক্লিক করার পর অন্য জায়গায় নিয়ে গেলে ব্যাগ চলে আসবেন, পরে আবার ক্লিক করলে ভিডিও চলবে। 
+      তাও না হলে VPN কানেক্ট করুন।
+    </div>
+    
+    <!-- 🎥 Responsive Video Player -->
+    <video
+      id="my-video"
+      class="video-js vjs-big-play-centered vjs-fluid"
+      controls
+      preload="auto"
+      poster="<%= post.imageLink %>"
+      data-setup='{}'
+    >
+      <source src="<%= post.videoLink %>" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+
+  </div>
+
+  <%- include("./footer") %>
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+  <script>
+    var player = videojs('my-video');
+    player.ready(function() {
+      console.log('Video.js is ready!');
+    });
+  </script>
+
+</body>
+</html>
