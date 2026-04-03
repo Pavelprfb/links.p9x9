@@ -22,5 +22,3 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://links.p9x9.com/sitemap.xml
-
-
