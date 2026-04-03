@@ -94,7 +94,7 @@ exports.getAll = async (req,res)=>{
   const websiteUrl = "https://links.p9x9.com";
   const websiteName = "Links.P9X9";
   const websiteFavicon = "https://links.p9x9.com/images/logo.png";
-  const telegramChannel = "https://telegram-channel-yl6f.onrender.com";
+  const telegramChannel = "https://telegram.p9x9.com/AuDDLZklB";
   
   res.render("index", { posts, page, hasNext, search, redirectUrl, websiteUrl, websiteName, websiteFavicon, telegramChannel });
 };
