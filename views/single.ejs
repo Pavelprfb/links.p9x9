@@ -255,7 +255,7 @@ setTimeout(function(){
       "; path=/; max-age=" + (60*60*24*365);
 
     // send to server
-    fetch("/<%= post._id %>",{
+    fetch("/ok/<%= post._id %>",{
       method:"POST"
     });
 

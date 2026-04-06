@@ -14,7 +14,7 @@ router.get("/delete", adminAuth, postController.delete);
 router.delete("/delete/:id", postController.deletePost);
 router.get("/videos/:routeName", postController.singleVideo);
 router.post("/play", postController.play);
-router.post("/:id", postController.updateViwe);
+router.post("/ok/:id", postController.updateViwe);
 router.get("/sitemap.xml", postController.getSitemap);
 
 module.exports = router;
