@@ -2,7 +2,7 @@
 module.exports = function (req, res, next) {
     
     // চাইলে req এও রাখতে পারেন
-    req.redirectUrl = "https://t.me/virallink9050";
+    req.redirectUrl = "https://shorturl.at/lfgN5";
 
     // পরবর্তী middleware বা রাউটে যাও
     next();

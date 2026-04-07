@@ -94,7 +94,7 @@ exports.getAll = async (req,res)=>{
   const websiteUrl = "https://links.p9x9.com";
   const websiteName = "Links.P9X9";
   const websiteFavicon = "https://links.p9x9.com/images/logo.png";
-  const telegramChannel = "https://telegram.p9x9.com/AuDDLZklB";
+  const telegramChannel = "https://shorturl.at/lfgN5";
   
   res.render("index", { posts, page, hasNext, search, redirectUrl, websiteUrl, websiteName, websiteFavicon, telegramChannel });
 };
@@ -136,7 +136,7 @@ exports.singleVideo = async (req, res) => {
   const websiteUrl = "https://links.p9x9.com";
   const websiteName = "Links.P9X9";
   const websiteFavicon = "https://links.p9x9.com/images/logo.png";
-  const telegramChannel = "https://telegram.p9x9.com/AuDDLZklB";
+  const telegramChannel = "https://shorturl.at/lfgN5";
   
   
   res.render("single", { post, suggestions, page, hasNext, redirectUrl, websiteUrl, websiteName, websiteFavicon, telegramChannel, allComment });
